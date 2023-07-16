@@ -1,0 +1,20 @@
+name: Lint
+
+on:
+  push:
+    tags:
+      - '**'
+    branches:
+      - initial-implementation
+
+jobs:
+  lint:
+    name: "Lint"
+    runs-on: [self-hosted, general-linter]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Lint
+        shell: bash
+        run: |
+          make lint

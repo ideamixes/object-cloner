@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - '**'
+    branches:
+      - initial-implementationx
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: [self-hosted, docker-image-build]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        id: build
+        shell: bash
+        run: |
+          make push VERSION=${{ github.ref_name }}
