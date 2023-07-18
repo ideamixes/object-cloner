@@ -1,6 +1,6 @@
 {
   "branches": [{"name": "initial-implementations", "prerelease": "init"}],
-  "tagFormat": "{version}",
+  "tagFormat": "${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
