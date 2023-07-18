@@ -23,7 +23,7 @@ jobs:
     permissions:
       contents: write
     name: "Release"
-    runs-on: [self-hosted, release]
+    runs-on: [self-hosted, releaser]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
