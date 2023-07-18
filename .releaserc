@@ -1,0 +1,15 @@
+{
+  "branches": [{"name": "initial-implementations", "prerelease": "init"}],
+  "tagFormat": "{version}",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/git",
+    [
+      "@semantic-release-plus/docker",
+      {
+        "name": "ghcr.io/ideamixes/object-cloner"
+      }
+    ]
+  ]
+}

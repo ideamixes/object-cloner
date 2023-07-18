@@ -1,0 +1,37 @@
+name: Lint
+
+on:
+  push:
+    tags:
+      - '**'
+    branches:
+      - initial-implementation
+
+jobs:
+#  lint:
+#    name: "Lint"
+#    runs-on: [self-hosted, general-linter]
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v3
+#      - name: Lint
+#        shell: bash
+#        run: |
+#          make lint
+
+  release:
+    permissions:
+      contents: write
+    name: "Release"
+    runs-on: [self-hosted, release]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        id: build
+        shell: bash
+        run: |
+          make push
+      - run: npx semantic-release-plus
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
