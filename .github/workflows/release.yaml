@@ -31,7 +31,7 @@ jobs:
         id: build
         shell: bash
         run: |
-          make push
+          make build
       - run: npx semantic-release-plus
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
