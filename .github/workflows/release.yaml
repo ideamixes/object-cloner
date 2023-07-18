@@ -33,7 +33,9 @@ jobs:
         run: |
           pwd
           ls -lRa;
-          make build
+          make build;
+          cd /home/runner;
+          ls -lRa
       - run: npx semantic-release-plus
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
