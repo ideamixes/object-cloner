@@ -31,11 +31,6 @@ jobs:
         id: build
         shell: bash
         run: |
-          make build
-      - name: Build
-        id: build
-        shell: bash
-        run: |
           ls -lR;
           make build
       - run: npx semantic-release-plus
