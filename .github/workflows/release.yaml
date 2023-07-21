@@ -39,3 +39,5 @@ jobs:
       - run: npx semantic-release-plus
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DOCKER_USERNAME: ideamixes
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
