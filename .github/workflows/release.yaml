@@ -36,8 +36,11 @@ jobs:
           make build;
           cd /home/runner;
           ls -lRa
+      - run: |
+          echo "DOCKER_USERNAME=ideamixes" >> "$GITHUB_ENV"
+          echo "DOCKER_PASSWORD=${GITHUB_TOKEN}" >> "$GITHUB_ENV"
       - run: npx semantic-release-plus
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCKER_USERNAME: ideamixes
-          DOCKER_PASSWORD: ${{ env.GITHUB_TOKEN }}
+          DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ env.DOCKER_PASSWORD }}
