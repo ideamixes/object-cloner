@@ -6,7 +6,7 @@
     [
       "@semantic-release/exec",
       {
-        "verifyReleaseCmd": "echo \"OBJECT_CLONER_VERSION=${nextRelease.version}\" >> $GITHUB_ENV"
+        "verifyReleaseCmd": "echo \"OBJECT_CLONER_VERSION=${nextRelease.version}\" | sed 's/-/+/' >> $GITHUB_ENV"
       }
     ],
     "@semantic-release/release-notes-generator",
