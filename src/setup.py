@@ -7,7 +7,7 @@ if os.environ.get('OBJECT_CLONER_DEV_DEPENDENCIES_ENABLED') == 'true':
     requirements_files.append("requirements-dev.txt")
 requirements = []
 for filename in requirements_files:
-    with open(f"objectcloner/{filename}", "r", encoding="utf-8") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         requirements += f.read().strip().split("\n")
 
 setup(
