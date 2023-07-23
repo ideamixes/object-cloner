@@ -5,10 +5,7 @@ on:
     tags:
       - '**'
     branches:
-<<<<<<< HEAD
-=======
       - main
->>>>>>> origin/main
       - initial-implementation
 
 jobs:
