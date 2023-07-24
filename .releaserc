@@ -20,9 +20,9 @@
     [
       "semantic-release-helm3",
       {
-        "chartPath": "./deploy/helm-chart-object-cloner",
+        "chartPath": "./deploy/helm-object-cloner",
         "crPublish": true,
-        "crConfigPath": "./deploy/helm-chart-object-clone/cr.yaml"
+        "crConfigPath": "./deploy/helm-object-clone/cr.yaml"
       }
     ]
   ]
