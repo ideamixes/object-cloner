@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  object-cloner:
+  - apiVersion: v2
+    appVersion: 2.0.0-initial-implementation.7
+    created: "2023-07-24T17:19:33.948649656Z"
+    description: object-cloner
+    digest: 0529297667b8eb11278a029c919cad5caddd12b04683edb8aa6eda43c1bcf289
+    name: object-cloner
+    type: application
+    urls:
+    - https://github.com/ideamixes/object-cloner/releases/download/object-cloner-2.0.0-initial-implementation.7/object-cloner-2.0.0-initial-implementation.7.tgz
+    version: 2.0.0-initial-implementation.7
+generated: "2023-07-24T17:19:33.95642455Z"
