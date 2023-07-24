@@ -22,7 +22,7 @@
       {
         "chartPath": "./deploy/helm-object-cloner",
         "crPublish": true,
-        "crConfigPath": "./deploy/helm-object-clone/cr.yaml"
+        "crConfigPath": "./deploy/helm-object-cloner/cr.yaml"
       }
     ]
   ]
