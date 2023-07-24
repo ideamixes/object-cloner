@@ -31,6 +31,7 @@ jobs:
       - run: |
           echo "DOCKER_USERNAME=ideamixes" >> "$GITHUB_ENV"
           echo "DOCKER_PASSWORD=${GITHUB_TOKEN}" >> "$GITHUB_ENV"
+          echo "GITHUB_TOKEN=${GITHUB_TOKEN}" >> "$GITHUB_ENV"
       - run: npx semantic-release --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -45,6 +46,6 @@ jobs:
           ls -lRa
       - run: npx semantic-release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ env.DOCKER_PASSWORD }}
