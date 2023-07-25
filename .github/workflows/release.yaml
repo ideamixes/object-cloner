@@ -2,8 +2,8 @@ name: Lint
 
 on:
   push:
-    tags:
-      - '**'
+    #tags:
+    #  - '**'
     branches:
       - main
       - initial-implementation
