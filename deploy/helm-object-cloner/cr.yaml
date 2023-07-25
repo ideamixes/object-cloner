@@ -1,1 +1,2 @@
 release-name-template: "helm-chart-{{ .Name }}-{{ .Version }}"
+index-path: index.yaml
