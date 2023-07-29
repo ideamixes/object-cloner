@@ -1,0 +1,9 @@
+---
+image:
+  repository: ghcr.io/ideamixes/object-cloner
+  # Sets the image tag instead of default {{ .Chart.AppVersion }}
+  tag: ""
+  pullPolicy: IfNotPresent
+logLevel: INFO
+allowedObjectKinds:
+  - ",v1,Secret"

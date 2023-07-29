@@ -12,7 +12,7 @@ for filename in requirements_files:
 
 setup(
     name="objectcloner",
-    version=os.environ['OBJECT_CLONER_VERSION'],
+    version=os.environ.get('OBJECT_CLONER_VERSION', '0.0.1'),
     author="IdeaMixes",
     author_email="mnasonov@ideamix.es",
     description="Object Cloner",

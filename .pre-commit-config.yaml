@@ -1,12 +1,23 @@
 repos:
+- repo: https://github.com/gruntwork-io/pre-commit
+  rev: 0c0c80e2ac7b16b715fd73e0aba106d2869fd86e # v0.1.21
+  hooks:
+    - id: helmlint
+      files: ^deploy/helm-
+- repo: https://github.com/norwoodj/helm-docs
+  rev: 45f63df3a13c43bdcb30c26a58eeac40fcf87dab # v1.11.0
+  hooks:
+    - id: helm-docs
+      always_run: true
+      args:
+        - --template-files=README.gotmpl.md
+      files: ^deploy/helm-
 - repo: local
   hooks:
     - id: pylint
       name: pylint
-      #entry: python3 -m pylint --recursive true .
       entry: python3 -m pylint --recursive true .
       language: system
       types: [python]
-      #exclude: src/build/
       always_run: true
       pass_filenames: false

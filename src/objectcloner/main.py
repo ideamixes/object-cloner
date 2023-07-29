@@ -7,7 +7,7 @@ from os import getenv
 from .operator import *
 
 logging.basicConfig(
-    level=getenv("CLUSTER_SECRET_LOG_LEVEL", str(logging.INFO)),
+    level=getenv("OBJECT_CLONER_LOG_LEVEL", str(logging.INFO)),
     format='%(asctime)s %(levelname)-8s %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
 )

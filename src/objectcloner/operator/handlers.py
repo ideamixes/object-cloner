@@ -144,7 +144,7 @@ def create_sourceobject_handlers():
     """
     allowed_object_kinds = os.environ.get('OBJECT_CLONER_ALLOWED_OBJECT_KINDS')
     kind_selectors = []
-    if allowed_object_kinds is not None:
+    if allowed_object_kinds is not None and allowed_object_kinds.strip() != '':
         for allowed_object_kind in allowed_object_kinds.split(" "):
             if len(allowed_object_kind) == 0:
                 continue

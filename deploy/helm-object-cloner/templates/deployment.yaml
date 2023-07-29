@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: object-cloner
+  labels:
+    app: object-cloner
+spec:
+    selector:
+      matchLabels:
+        app: object-cloner
+    template:
+      metadata:
+        labels:
+          app: object-cloner
+      spec:
+        serviceAccountName: object-cloner
+        containers:
+        - name: app
+          image: {{ include "object-cloner.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: OBJECT_CLONER_ALLOWED_OBJECT_KINDS
+              value: {{ join " " .Values.allowedObjectKinds | quote }}
+            - name: OBJECT_CLONER_LOG_LEVEL
+              value: {{ .Values.logLevel }}
