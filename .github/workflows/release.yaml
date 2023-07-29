@@ -19,6 +19,7 @@ jobs:
           make lint
 
   release:
+    needs: lint
     permissions:
       contents: write
     name: "Release"
