@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   object-cloner:
   - apiVersion: v2
+    appVersion: 2.0.0-initial-implementation.23
+    created: "2023-07-30T05:15:42.061629733Z"
+    description: object-cloner
+    digest: c6193235f93a4004cd03a908f85bef44d0565b72465feba13375b5d9ad687b97
+    name: object-cloner
+    type: application
+    urls:
+    - https://github.com/ideamixes/object-cloner/releases/download/helm-chart-object-cloner-2.0.0-initial-implementation.23/object-cloner-2.0.0-initial-implementation.23.tgz
+    version: 2.0.0-initial-implementation.23
+  - apiVersion: v2
     appVersion: 2.0.0-initial-implementation.22
     created: "2023-07-30T03:52:56.31674745Z"
     description: object-cloner
@@ -91,4 +101,4 @@ entries:
     urls:
     - https://github.com/ideamixes/object-cloner/releases/download/object-cloner-2.0.0-initial-implementation.7/object-cloner-2.0.0-initial-implementation.7.tgz
     version: 2.0.0-initial-implementation.7
-generated: "2023-07-30T03:52:56.317091259Z"
+generated: "2023-07-30T05:15:42.061834103Z"
