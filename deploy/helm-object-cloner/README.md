@@ -22,7 +22,7 @@ object-cloner
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| allowedObjectKinds[0] | string | `",v1,Secret"` |  |
+| allowedObjectKinds[0] | string | `",v1,secrets"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"ghcr.io/ideamixes/object-cloner"` |  |
 | image.tag | string | `""` |  |

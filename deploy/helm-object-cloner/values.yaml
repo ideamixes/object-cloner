@@ -6,4 +6,4 @@ image:
   pullPolicy: IfNotPresent
 logLevel: INFO
 allowedObjectKinds:
-  - ",v1,Secret"
+  - ",v1,secrets"

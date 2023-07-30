@@ -45,7 +45,7 @@ jobs:
           make build;
           cd /home/runner;
           ls -lRa
-      - run: npx semantic-release || sleep 36000
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DOCKER_USERNAME: ${{ env.DOCKER_USERNAME }}
