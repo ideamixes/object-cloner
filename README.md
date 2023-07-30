@@ -1,7 +1,8 @@
 # object-cloner
 
-Allows to copy namespaced objects to other namespaces and keep them synced. All object kinds are supported, for example 
-Secret, ConfigMap.
+A Kubernetes operator that allows to copy namespaced objects to other namespaces and keep them synced. Inspired 
+by [ClusterSecret](https://github.com/zakkg3/ClusterSecret) but implemented for more general usage - all object 
+kinds (for example, Secret, ConfigMap) are supported. 
 
 ## Installation
 
