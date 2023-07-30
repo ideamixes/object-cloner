@@ -5,7 +5,7 @@ Secret, ConfigMap.
 
 ## Installation
 
-* [Helm chart](./deploy/helm-object-cloner/README.gotmpl.md)
+* [Helm chart](./deploy/helm-object-cloner/README.md)
 
 ## Configuration
 
