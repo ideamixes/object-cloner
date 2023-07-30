@@ -30,7 +30,7 @@ class ClusterObject:
             'group': self.body['spec']['sourceObject']['group'],
             'version': self.body['spec']['sourceObject']['version'],
             'kind': self.body['spec']['sourceObject']['kind'],
-            'name': self.body['metadata']['name'],
+            'name': self.body['spec']['sourceObject'].get('name', self.body['metadata']['name']),
         }
 
         self.update_strategy = self.body['spec'].get('updateStrategy', 'Default')
@@ -64,15 +64,16 @@ class ClusterObject:
         """
 
         fields_to_exclude = self.body['spec'].get('fieldsToExclude', []).copy()
-        fields_to_exclude.append(['status'])
-        fields_to_exclude.append(['metadata', 'annotations'])
-        fields_to_exclude.append(['metadata', 'creationTimestamp'])
-        fields_to_exclude.append(['metadata', 'managedFields'])
-        fields_to_exclude.append(['metadata', 'namespace'])
-        fields_to_exclude.append(['metadata', 'ownerReferences'])
-        fields_to_exclude.append(['metadata', 'resourceVersion'])
-        fields_to_exclude.append(['metadata', 'uid'])
-        delete_fields(obj, fields_to_exclude)
+        fields_to_exclude.append('.status')
+        fields_to_exclude.append('.metadata.annotations')
+        fields_to_exclude.append('.metadata.creationTimestamp')
+        fields_to_exclude.append('.metadata.managedFields')
+        fields_to_exclude.append('.metadata.namespace')
+        fields_to_exclude.append('.metadata.ownerReferences')
+        fields_to_exclude.append('.metadata.resourceVersion')
+        fields_to_exclude.append('.metadata.uid')
+        fields_to_exclude_with_path_items = [field.strip(' .').split('.') for field in fields_to_exclude]
+        delete_fields(obj, fields_to_exclude_with_path_items)
 
     # pylint: disable=too-many-branches
     def sync_to_namespaces(self, namespace_name=None):

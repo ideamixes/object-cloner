@@ -19,14 +19,15 @@ spec:
           properties:
             spec:
               type: object
+              required:
+                - namespacesToInclude
+                - sourceObject
               properties:
                 fieldsToExclude:
                   type: array
                   default: []
                   items:
-                    type: array
-                    items:
-                      type: string
+                    type: string
                 namespacesToExclude:
                   type: array
                   default: []
@@ -38,12 +39,18 @@ spec:
                     type: string
                 sourceObject:
                   type: object
+                  required:
+                    - group
+                    - version
+                    - kind
                   properties:
                     group:
                       type: string
                     version:
                       type: string
                     kind:
+                      type: string
+                    name:
                       type: string
                 cleanupEvents:
                   type: string
