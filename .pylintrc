@@ -1,0 +1,4 @@
+[FORMAT]
+max-line-length=120
+signature-mutators=kubernetes_api
+ignore=build

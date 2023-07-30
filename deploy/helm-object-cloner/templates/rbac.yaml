@@ -1,0 +1,103 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: object-cloner
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: object-cloner
+rules:
+  - apiGroups:
+      - object-cloner.ideamix.es
+    resources:
+      - clusterobjects
+      - clusterobjects/status
+    verbs:
+      - '*'
+  - apiGroups:
+      - ""
+    resources:
+      - namespaces
+      - namespaces/status
+    verbs:
+      - watch
+      - list
+      - get
+      - patch
+  {{- if eq (len .Values.allowedObjectKinds) 0 }}
+  - apiGroups:
+      - '*'
+    resources:
+      - '*'
+    verbs:
+      - '*'
+  {{- else }}
+  {{ range $allowedObjectKind := .Values.allowedObjectKinds }}
+  - apiGroups:
+      - {{ first (splitList "," $allowedObjectKind) | quote }}
+    resources:
+      - {{ last (splitList "," $allowedObjectKind) | quote }}
+    verbs:
+      - '*'
+  {{- end }}
+  {{- end }}
+  # The rest of the rules are required by kopf itself
+  # (see https://kopf.readthedocs.io/en/stable/deployment/ for more details)
+  # Framework: knowing which other operators are running (i.e. peering).
+  - apiGroups: [kopf.dev]
+    resources: [clusterkopfpeerings]
+    verbs: [list, watch, patch, get]
+  # Framework: runtime observation of namespaces & CRDs (addition/deletion).
+  - apiGroups: [apiextensions.k8s.io]
+    resources: [customresourcedefinitions]
+    verbs: [list, watch]
+  - apiGroups: [""]
+    resources: [namespaces]
+    verbs: [list, watch]
+  # Framework: admission webhook configuration management.
+  - apiGroups: [admissionregistration.k8s.io/v1, admissionregistration.k8s.io/v1beta1]
+    resources: [validatingwebhookconfigurations, mutatingwebhookconfigurations]
+    verbs: [create, patch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: object-cloner
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: object-cloner
+subjects:
+  - kind: ServiceAccount
+    name: object-cloner
+    namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: object-cloner
+rules:
+
+  # Framework: knowing which other operators are running (i.e. peering).
+  - apiGroups: [kopf.dev]
+    resources: [kopfpeerings]
+    verbs: [list, watch, patch, get]
+
+  # Framework: posting the events about the handlers progress/errors.
+  - apiGroups: [""]
+    resources: [events]
+    verbs: [create]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: object-cloner
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: object-cloner
+subjects:
+  - kind: ServiceAccount
+    name: object-cloner

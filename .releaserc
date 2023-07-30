@@ -1,8 +1,29 @@
 {
-  "branches": ["+([0-9])?(.{+([0-9]),x}).x", "main", {"name": "initial-implementation", "prerelease": "dev.${name.replace(/[\/_]/g, '')}"}],
+  "branches": ["+([0-9])?(.{+([0-9]),x}).x", "main", {"name": "initial-implementation", "prerelease": "${name.replace(/[\/_]/g, '')}"}],
   "tagFormat": "${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/exec",
+      {
+        "verifyReleaseCmd": "echo \"OBJECT_CLONER_VERSION=${nextRelease.version}\" | sed 's/-/+/' >> $GITHUB_ENV"
+      }
+    ],
+    "@semantic-release/release-notes-generator",
     "@semantic-release/git",
+    [
+      "@semantic-release-plus/docker",
+      {
+        "name": "ghcr.io/ideamixes/object-cloner"
+      }
+    ],
+    [
+      "semantic-release-helm3",
+      {
+        "chartPath": "./deploy/helm-object-cloner",
+        "crPublish": true,
+        "crConfigPath": "./deploy/helm-object-cloner/cr.yaml"
+      }
+    ]
   ]
 }

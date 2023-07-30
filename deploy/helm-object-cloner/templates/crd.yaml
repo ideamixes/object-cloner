@@ -1,0 +1,79 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: clusterobjects.object-cloner.ideamix.es
+spec:
+  group: object-cloner.ideamix.es
+  names:
+    kind: ClusterObject
+    plural: clusterobjects
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - namespacesToInclude
+                - sourceObject
+              properties:
+                fieldsToExclude:
+                  type: array
+                  default: []
+                  items:
+                    type: string
+                namespacesToExclude:
+                  type: array
+                  default: []
+                  items:
+                    type: string
+                namespacesToInclude:
+                  type: array
+                  items:
+                    type: string
+                sourceObject:
+                  type: object
+                  required:
+                    - group
+                    - version
+                    - kind
+                  properties:
+                    group:
+                      type: string
+                    version:
+                      type: string
+                    kind:
+                      type: string
+                    name:
+                      type: string
+                cleanupEvents:
+                  type: string
+                  default: ""
+                  description: "Comma-delimited list of zero or more of the following values: OnClusterObjectDelete, OnSourceObjectDelete"
+                updateStrategy:
+                  type: string
+                  default: Default
+                  description: "Supported values: Default, Auto, AlwaysRecreate, NeverRecreate"
+            status:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
+              properties:
+                syncedNamespaces:
+                  description: Namespaces where the object is synced to
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      timestamp:
+                        type: string
+                        format: datetime
+      subresources:
+        status: {}
