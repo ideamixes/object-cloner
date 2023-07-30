@@ -13,6 +13,7 @@ rules:
       - object-cloner.ideamix.es
     resources:
       - clusterobjects
+      - clusterobjects/status
     verbs:
       - '*'
   - apiGroups:

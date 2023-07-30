@@ -11,10 +11,10 @@ Secret, ConfigMap.
 
 The following environment variables can be set:
 
-| Name                               | Default Value | Description                                                                                                                                                                                                                                                                                           |
-|------------------------------------|---------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| OBJECT_CLONER_LOG_LEVEL            | INFO          | Log level                                                                                                                                                                                                                                                                                             |
-| OBJECT_CLONER_ALLOWED_OBJECT_KINDS | ,v1,Secret    | A space-delimited list of object kind definitions. Each definition consists of 3 comma-delimited items: API group, version, kind name. The setting is used to limit number of resources that the operator manages both performance- and security-wise. If unset, the operator will watch all objects. |
+| Name                               | Default Value | Description                                                                                                                                                                                                                                                                                             |
+|------------------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| OBJECT_CLONER_LOG_LEVEL            | INFO          | Log level                                                                                                                                                                                                                                                                                               |
+| OBJECT_CLONER_ALLOWED_OBJECT_KINDS | ,v1,secrets   | A space-delimited list of object kind definitions. Each definition consists of 3 comma-delimited items: API group, version, Kind plural. The setting is used to limit number of resources that the operator manages both performance- and security-wise. If unset, the operator will watch all objects. |
 
 ## Development
 
